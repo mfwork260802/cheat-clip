@@ -17,7 +17,7 @@ export const LanguageSwitcher: React.FC = () => {
         className={`${styles.btn} ${language === 'id' ? styles.active : ''}`}
         title="Bahasa Indonesia"
       >
-        [ID]
+        ID
       </button>
 
       <button
@@ -26,7 +26,7 @@ export const LanguageSwitcher: React.FC = () => {
         className={`${styles.btn} ${language === 'en' ? styles.active : ''}`}
         title="English"
       >
-        [EN]
+        EN
       </button>
     </div>
   );

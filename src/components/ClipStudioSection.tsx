@@ -60,22 +60,22 @@ function getFriendlyErrorMessage(rawMsg: string): string {
   if (!rawMsg) return 'Rendering failed unexpectedly.';
   const lower = rawMsg.toLowerCase();
   if (lower.includes("moov atom not found")) {
-    return 'Download interrupted by internet lag ("moov atom not found"). The video stream was cut off before finishing. Click "[~] Retry" to re-download.';
+    return 'Download interrupted by internet lag ("moov atom not found"). The video stream was cut off before finishing. Click "Retry" to re-download.';
   }
   if (lower.includes("bot verification") || lower.includes("sign in") || lower.includes("confirm you're not a bot")) {
-    return 'YouTube requires cookies verification. Click the [*] Cookies Manager button in the top navbar to save your YouTube cookies.';
+    return 'YouTube requires cookies verification. Click the Cookies Manager button in the top navbar to save your YouTube cookies.';
   }
   if (lower.includes("rendering timed out") || (lower.includes("timed out") && lower.includes("rendering"))) {
-    return 'Video rendering timed out due to duration/complexity. Click "[~] Retry" or switch to Universal CPU encoder in Studio Settings.';
+    return 'Video rendering timed out due to duration/complexity. Click "Retry" or switch to Universal CPU encoder in Studio Settings.';
   }
   if (lower.includes("timed out") || lower.includes("timeout")) {
-    return 'Video download timed out due to slow/laggy internet connection. Click "[~] Retry" to try downloading again.';
+    return 'Video download timed out due to slow/laggy internet connection. Click "Retry" to try downloading again.';
   }
   if (lower.includes("hardware encoder") || (lower.includes("ffmpeg") && (lower.includes("nvenc") || lower.includes("amf") || lower.includes("qsv")))) {
     return 'GPU hardware encoder failed. Please switch Video Encoder to "Universal CPU (libx264)" in Studio Settings.';
   }
   if (lower.includes("no space left") || lower.includes("disk full") || lower.includes("out of disk")) {
-    return 'Disk storage is full. Please click "[x] Clear Temp" to free up storage space.';
+    return 'Disk storage is full. Please click "Clear Temp" to free up storage space.';
   }
   if (lower.includes("whisper") || lower.includes("transcribe")) {
     return 'Word transcription failed. Check your audio track or switch subtitle style to none.';
@@ -1667,7 +1667,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
           <div>
             <div className="studio-title-badge-row">
               <h2 className="studio-main-heading" style={{ fontSize: '1.4rem', fontFamily: 'var(--font-mono)', fontWeight: 800 }}>
-                <span style={{ color: '#3b6dff' }}>&gt;_</span> {t.studio.heading}
+                <span style={{ color: '#3b6dff' }}></span> {t.studio.heading}
               </h2>
             </div>
             <p className="studio-subtext">
@@ -1884,7 +1884,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                   </div>
                   <div className="pill-group framing-pills" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                     {[
-                      { id: 'auto', label: t.studio.framingAuto || '[AI] AI Auto' },
+                      { id: 'auto', label: t.studio.framingAuto || 'AI Auto' },
                       { id: 'center', label: t.studio.framingCenter || '> Center (50%)' },
                       { id: 'left', label: t.studio.framingLeft || '⬅️ Left Focus (35%)' },
                       { id: 'right', label: t.studio.framingRight || '-> Right Focus (65%)' },
@@ -2016,7 +2016,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
 
             {titlePosition === 'none' && (
               <div className="subtitles-disabled-notice-box" style={{ marginBottom: '0.75rem' }}>
-                <span>[!] {t.studio.titleDisabledNotice || "Headline hook & title banner are disabled. Live preview and final export will have no hook banner."}</span>
+                <span>{t.studio.titleDisabledNotice || "Headline hook & title banner are disabled. Live preview and final export will have no hook banner."}</span>
               </div>
             )}
 
@@ -2027,7 +2027,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                 <div className="hook-clip-title-input-wrap" style={{ marginBottom: '0.75rem', width: '100%' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
                     <label className="hook-input-label" style={{ margin: 0, fontWeight: 500, fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                      // {t.studio.clipTitleEditLabel || "Hook Title (Active Clip):"}
+                      {t.studio.clipTitleEditLabel || "Hook Title (Active Clip):"}
                     </label>
                     {currentCustomTitle !== undefined && currentCustomTitle.trim() !== '' && currentCustomTitle !== (currentPreviewClip?.title_suggestion || currentPreviewClip?.title) && (
                       <button
@@ -2148,7 +2148,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                   <div className="font-section-header">
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                       <span className="sub-toggle-label" style={{ margin: 0, fontWeight: 600, color: 'var(--text-secondary)' }}>
-                        // {t.studio.titleFontFamily || "Title Font Family"}
+                        {t.studio.titleFontFamily || "Title Font Family"}
                       </span>
                       <span className="badge" style={{ fontSize: '0.68rem', padding: '0.1rem 0.45rem', opacity: 0.85 }}>
                         {titleFont}
@@ -2167,7 +2167,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                         style={{ fontFamily: font.name, fontSize: '0.78rem', fontWeight: titleFont === font.name ? 700 : 400 }}
                       >
                         {font.name}
-                        {font.is_custom && <span style={{ marginLeft: '4px', fontSize: '0.62rem', opacity: 0.85, color: '#fbbf24' }}>[*]</span>}
+                        {font.is_custom && <span style={{ marginLeft: '4px', fontSize: '0.62rem', opacity: 0.85, color: '#fbbf24' }}>Custom</span>}
                       </button>
                     ))}
                   </div>
@@ -2208,7 +2208,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                       disabled={isUploadingFont}
                     />
                     <span className="font-dropzone-icon">
-                      {isUploadingFont ? '[...]' : isTitleFontDragging ? 'v' : '[+]'}
+                      {isUploadingFont ? '[...]' : isTitleFontDragging ? '↓' : '+'}
                     </span>
                     <div className="font-dropzone-text">
                       <span className="font-dropzone-title">
@@ -2435,7 +2435,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
 
             {captionStyle === 'none' && (
               <div className="subtitles-disabled-notice-box" style={{ marginBottom: '0.75rem' }}>
-                <span>[!] {t.studio.subtitlesDisabledNotice}</span>
+                <span>{t.studio.subtitlesDisabledNotice}</span>
               </div>
             )}
 
@@ -2555,7 +2555,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                   <div className="font-section-header">
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
                       <span className="sub-toggle-label" style={{ margin: 0, fontWeight: 600, color: 'var(--text-secondary)' }}>
-                        // {t.studio.fontFamily}
+                        {t.studio.fontFamily}
                       </span>
                       <span className="badge" style={{ fontSize: '0.68rem', padding: '0.1rem 0.45rem', opacity: 0.85 }}>
                         {captionFont}
@@ -2574,7 +2574,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                         style={{ fontFamily: font.name, fontSize: '0.78rem', fontWeight: captionFont === font.name ? 700 : 400 }}
                       >
                         {font.name}
-                        {font.is_custom && <span style={{ marginLeft: '4px', fontSize: '0.62rem', opacity: 0.85, color: '#fbbf24' }}>[*]</span>}
+                        {font.is_custom && <span style={{ marginLeft: '4px', fontSize: '0.62rem', opacity: 0.85, color: '#fbbf24' }}>Custom</span>}
                       </button>
                     ))}
                   </div>
@@ -2615,7 +2615,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                       disabled={isUploadingFont}
                     />
                     <span className="font-dropzone-icon">
-                      {isUploadingFont ? '[...]' : isSubFontDragging ? 'v' : '[+]'}
+                      {isUploadingFont ? '[...]' : isSubFontDragging ? '↓' : '+'}
                     </span>
                     <div className="font-dropzone-text">
                       <span className="font-dropzone-title">
@@ -3311,7 +3311,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                           style={{ display: 'none' }}
                           disabled={isUploadingWatermark}
                         />
-                        <div className="dropzone-icon">{isUploadingWatermark ? '[...]' : isWatermarkDragging ? 'v' : '//'}</div>
+                        <div className="dropzone-icon">{isUploadingWatermark ? '[...]' : isWatermarkDragging ? '↓' : '+'}</div>
                         <div className="dropzone-text">
                           <span className="dropzone-main-text">
                             {isUploadingWatermark ? 'Uploading Watermark...' : isWatermarkDragging ? t.studio.watermarkDropActive : t.studio.watermarkUploadMain}
@@ -3752,7 +3752,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
               <div className="compilation-config-card">
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.45rem' }}>
                   <label className="compilation-label" style={{ margin: 0, fontWeight: 500, fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                    <span>[+] {t.studio.compilationHookLabel}</span>
+                    <span>{t.studio.compilationHookLabel}</span>
                   </label>
                   <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 400 }}>
                     {t.studio.fileNameBadge || 'Optional'}
@@ -4272,14 +4272,14 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                             </svg>
                             <span className="pip-skeleton-text">CAM</span>
                           </div>
-                          <div className="wireframe-pip-badge">[*] CAM</div>
+                          <div className="wireframe-pip-badge">CAM</div>
                         </div>
                       )}
 
                       {/* Badge for Split Mode Bottom Feed */}
                       {streamerPreset === 'split_top_cam' && (
                         <div className="wireframe-gameplay-badge">
-                          // GAMEPLAY ({aspectRatio})
+                          GAMEPLAY ({aspectRatio})
                         </div>
                       )}
                     </div>
@@ -4629,11 +4629,11 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                           </option>
                           {hasWebCodecs && (
                             <option value="client_gpu">
-                              [GPU] Client GPU Acceleration ({clientGpuName})
+                              Client GPU Acceleration ({clientGpuName})
                             </option>
                           )}
                           <option value="browser_wasm">
-                            [WASM] {t.studio.hwWasm || 'Browser Engine (Client-Side WASM · 0% Server CPU)'}
+                            {t.studio.hwWasm || 'Browser Engine (Client-Side WASM · 0% Server CPU)'}
                           </option>
                           <option value="nvenc" disabled={hardwareInfo?.support && !hardwareInfo.support.nvenc}>
                             {t.studio.hwNvenc} {hardwareInfo?.support?.nvenc ? `(${t.studio.hwSupportedPill})` : `(${t.studio.hwUnavailablePill})`}
@@ -4652,11 +4652,11 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                         <>
                           {hasWebCodecs && (
                             <option value="client_gpu">
-                              [GPU] Client GPU Acceleration ({clientGpuName})
+                              Client GPU Acceleration ({clientGpuName})
                             </option>
                           )}
                           <option value="browser_wasm">
-                            [WASM] Browser Engine (Client-Side · 0% Server CPU)
+                            Browser Engine (Client-Side · 0% Server CPU)
                           </option>
                         </>
                       )}
@@ -4826,7 +4826,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', textAlign: 'left' }}>
-              <span style={{ fontSize: '1.15rem' }}>[!]</span>
+              <span style={{ fontSize: '1.15rem' }}></span>
               <span style={{ fontSize: '0.79rem', color: '#fbbf24', fontWeight: 500, lineHeight: 1.4 }}>
                 {t.cookieWarning.studioBannerWarning}
               </span>
@@ -4881,7 +4881,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                 <h4 className="batch-queue-title">{t.studio.batchQueueTitle}</h4>
                 {batchProgress.overall_status === 'running' && (
                   <span className="queue-generating-pill">
-                    <span className="queue-pulse-dot"></span> * GENERATING VIDEO...
+                    <span className="queue-pulse-dot"></span> GENERATING VIDEO...
                   </span>
                 )}
               </div>
@@ -4920,7 +4920,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                 >
                   {t.studio.retryAllFailedBtn
                     ? t.studio.retryAllFailedBtn(batchProgress.clips.filter(c => c.status === 'error').length)
-                    : `[~] Retry Failed (${batchProgress.clips.filter(c => c.status === 'error').length})`}
+                    : `Retry Failed (${batchProgress.clips.filter(c => c.status === 'error').length})`}
                 </button>
               )}
 
@@ -4945,7 +4945,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                     cursor: 'pointer',
                   }}
                 >
-                  [PKG] ZIP
+                  ZIP
                 </a>
               )}
 
@@ -5208,7 +5208,7 @@ export const ClipStudioSection: React.FC<ClipStudioSectionProps> = ({
                 <strong>{t.studio.confirmModalNotice}</strong>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#38bdf8' }}>
-                <span>[SEC]</span>
+                <span></span>
                 <strong>{t.studio.confirmModalCookieNotice}</strong>
               </div>
             </div>

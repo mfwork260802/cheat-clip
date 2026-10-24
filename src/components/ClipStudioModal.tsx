@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../locales';
+import { Sparkles } from 'lucide-react';
 import type {
   ViralClip,
   RenderSettings,
@@ -127,7 +128,7 @@ export const ClipStudioModal: React.FC<ClipStudioModalProps> = ({
         {/* Header */}
         <div className="studio-modal-header">
           <div className="studio-header-title">
-            <div className="studio-icon-badge">&gt;_</div>
+            <div className="studio-icon-badge"><Sparkles size={16} /></div>
             <div>
               <div className="studio-title-row">
                 <h2>{t.studio.heading}</h2>
@@ -250,7 +251,7 @@ export const ClipStudioModal: React.FC<ClipStudioModalProps> = ({
                       </div>
                       <div className="pill-group framing-pills" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                         {[
-                          { id: 'auto', label: t.studio.framingAuto || '[AI] AI Auto' },
+                          { id: 'auto', label: t.studio.framingAuto || 'AI Auto' },
                           { id: 'center', label: t.studio.framingCenter || '> Center (50%)' },
                           { id: 'left', label: t.studio.framingLeft || '⬅️ Left Focus (35%)' },
                           { id: 'right', label: t.studio.framingRight || '-> Right Focus (65%)' },
@@ -688,12 +689,12 @@ export const ClipStudioModal: React.FC<ClipStudioModalProps> = ({
                             </svg>
                             <span className="pip-skeleton-text">CAM</span>
                           </div>
-                          <div className="wireframe-pip-badge">[*] CAM</div>
+                          <div className="wireframe-pip-badge">CAM</div>
                         </div>
                       )}
                       {streamerPreset === 'split_top_cam' && (
                         <div className="wireframe-gameplay-badge">
-                          // GAMEPLAY ({aspectRatio})
+                          GAMEPLAY ({aspectRatio})
                         </div>
                       )}
                     </div>

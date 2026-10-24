@@ -1903,7 +1903,7 @@ export default function App() {
         msg.includes('not running')
       ) {
         setError(
-          '[CONN] Backend API Server is unreachable (Port 8000).\n' +
+          'Backend API Server is unreachable (Port 8000).\n' +
           'Please ensure the full app is running in your terminal (`npm run dev`).\n' +
           'If Python dependencies were not installed yet, run: `pip install -r requirements.txt`'
         );
@@ -2138,7 +2138,7 @@ export default function App() {
           ...prev,
           [clipKey]: { status: 'ready' }
         }));
-        setToastMessage(`[OK] ${clip.title} (raw)`);
+        setToastMessage(`${clip.title} (raw)`);
         setTimeout(() => {
           setClipDownloadStates(prev => ({
             ...prev,
@@ -2223,7 +2223,7 @@ export default function App() {
                 ...prev,
                 [clipKey]: { status: 'ready' }
               }));
-              setToastMessage(`[OK] ${clip.title} (raw)`);
+              setToastMessage(`${clip.title} (raw)`);
               const a = document.createElement("a");
               a.href = statusData.download_url;
               a.download = statusData.filename || `${clip.title} (raw).mp4`;
@@ -2800,7 +2800,7 @@ Transcript:
         {result && workflowTab !== 'clips' && (
           <div className="active-video-banner">
             <div className="active-video-info">
-              <span className="studio-tab-preview-title">&gt;_ ACTIVE VIDEO:</span>
+              <span className="studio-tab-preview-title">ACTIVE VIDEO:</span>
               <span className="studio-tab-preview-name">{result.title}</span>
               <span className="studio-tab-preview-count">[{result.clips?.length || 0} klip tersedia]</span>
             </div>
@@ -2817,7 +2817,7 @@ Transcript:
                   fontWeight: 700
                 }}
               >
-                [ 02 // LIHAT CLIPS ➔ ]
+                Lihat Klip ➔
               </button>
               <button
                 type="button"
@@ -2988,7 +2988,7 @@ Transcript:
                         whiteSpace: 'nowrap',
                       }}
                     >
-                      LINK &gt;
+                      LINK
                     </div>
                     <input
                       id="youtube-url-input"
@@ -3109,7 +3109,7 @@ Transcript:
                         whiteSpace: 'nowrap',
                       }}
                     >
-                      LINK &gt;
+                      LINK
                     </div>
                     <input
                       id="gdrive-url-input"
@@ -3193,7 +3193,7 @@ Transcript:
                   </button>
                 </div>
                 <span style={{ fontSize: '0.74rem', color: 'var(--text-muted)', lineHeight: 1.3, fontWeight: 400 }}>
-                // NOTE: {t.form.gdriveNotice}
+                NOTE: {t.form.gdriveNotice}
                 </span>
               </div>
             )}
@@ -3336,13 +3336,13 @@ Transcript:
                         </div>
                         <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem', alignItems: 'center' }}>
                           {uploadedVideoFile && (
-                            <span>[PKG] {(uploadedVideoFile.size / (1024 * 1024)).toFixed(1)} MB</span>
+                            <span>{(uploadedVideoFile.size / (1024 * 1024)).toFixed(1)} MB</span>
                           )}
                           {uploadedVideoInfo && uploadedVideoInfo.duration > 0 && (
                             <span> {Math.round(uploadedVideoInfo.duration)}s</span>
                           )}
                           <span>•</span>
-                          <span style={{ color: '#10b981', fontWeight: 600 }}>* Whisper AI Auto-Transcribe</span>
+                          <span style={{ color: '#10b981', fontWeight: 600 }}>Whisper AI Auto-Transcribe</span>
                         </div>
                       </div>
                     </div>
@@ -3410,7 +3410,7 @@ Transcript:
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', padding: '1.25rem', borderRadius: 'var(--radius-md)', background: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255, 255, 255, 0.04)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <h3 style={{ fontSize: '0.9rem', color: 'var(--primary)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '0.4rem', margin: 0 }}>
-                    [AI] {t.form.aiSettingsTitle}
+                    {t.form.aiSettingsTitle}
                   </h3>
                   <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
                     {apiProvider === 'gemini' ? 'ENGINE: GOOGLE_GEMINI' : 'ENGINE: OPENROUTER_MULTILLM'}
@@ -3673,7 +3673,7 @@ Transcript:
                         </select>
                       )}
                       <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', lineHeight: 1.4, marginTop: '0.2rem' }}>
-                      // NOTE: <strong>Same-Family Fallback:</strong> {t.form.openrouterResilienceDesc}
+                      NOTE: <strong>Same-Family Fallback:</strong> {t.form.openrouterResilienceDesc}
                       </span>
                     </div>
                   </>
@@ -3684,7 +3684,7 @@ Transcript:
               {/* Card 2: Clip Parameters & Focus */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', padding: '1.25rem', borderRadius: 'var(--radius-md)', background: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255, 255, 255, 0.04)' }}>
                 <h3 style={{ fontSize: '0.9rem', color: 'var(--secondary)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.25rem' }}>
-                  * {t.form.clipCustomizationTitle}
+                  {t.form.clipCustomizationTitle}
                 </h3>
 
                 {/* Preferred Duration Selector */}
@@ -3738,7 +3738,7 @@ Transcript:
                   </div>
                   {durationPref === 'auto' && (
                     <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', lineHeight: 1.3, marginTop: '0.1rem' }}>
-                    // NOTE: {t.form.durAutoTip}
+                    NOTE: {t.form.durAutoTip}
                     </span>
                   )}
                 </div>
@@ -3827,12 +3827,12 @@ Transcript:
                         <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', width: '20px', textAlign: 'right' }}>50</span>
                       </div>
                       <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', lineHeight: 1.3 }}>
-                      // NOTE: {t.form.clipCountTip(targetClipCount, targetClipCount <= 5 ? `${Math.max(1, targetClipCount - 1)}-${targetClipCount + 2}` : targetClipCount <= 10 ? `${Math.max(1, targetClipCount - 2)}-${targetClipCount + 3}` : `${targetClipCount - 5}-${targetClipCount + 5}`)}
+                      NOTE: {t.form.clipCountTip(targetClipCount, targetClipCount <= 5 ? `${Math.max(1, targetClipCount - 1)}-${targetClipCount + 2}` : targetClipCount <= 10 ? `${Math.max(1, targetClipCount - 2)}-${targetClipCount + 3}` : `${targetClipCount - 5}-${targetClipCount + 5}`)}
                       </span>
                     </>
                   ) : (
                     <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', lineHeight: 1.3, marginTop: '0.1rem' }}>
-                    // NOTE: {t.form.clipCountAutoTip}
+                    NOTE: {t.form.clipCountAutoTip}
                     </span>
                   )}
                 </div>
@@ -3921,7 +3921,6 @@ Transcript:
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', marginTop: '0.25rem', padding: '0.75rem 0.9rem', background: 'rgba(255, 255, 255, 0.02)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <label style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <span>//</span>
                       <span>{t.form.transcriptLanguage}</span>
                     </label>
                     <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
@@ -3947,7 +3946,7 @@ Transcript:
                         borderRadius: 'var(--radius-md)'
                       }}
                     >
-                      [EN] {t.form.langEnglish}
+                      {t.form.langEnglish}
                     </button>
                     <button
                       type="button"
@@ -3967,7 +3966,7 @@ Transcript:
                         borderRadius: 'var(--radius-md)'
                       }}
                     >
-                      [ID] {t.form.langIndonesian}
+                      {t.form.langIndonesian}
                     </button>
                   </div>
                 </div>
@@ -3975,7 +3974,7 @@ Transcript:
 
               {subtitlesSource === 'youtube' && (
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', opacity: 0.8, display: 'block', marginTop: '0.15rem', lineHeight: '1.4' }}>
-                // NOTE: <strong>{t.form.subtitlesTipTitle}</strong> {t.form.subtitlesTipDesc} <a href="https://downsub.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--secondary)', textDecoration: 'underline', fontWeight: '500' }}>downsub.com</a> {t.form.andUploadOption}
+                NOTE: <strong>{t.form.subtitlesTipTitle}</strong> {t.form.subtitlesTipDesc} <a href="https://downsub.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--secondary)', textDecoration: 'underline', fontWeight: '500' }}>downsub.com</a> {t.form.andUploadOption}
                 </span>
               )}
             </div>
@@ -4303,7 +4302,7 @@ Transcript:
                           fontWeight: 600,
                           width: 'fit-content'
                         }}>
-                          <span className="spinner-icon" style={{ fontSize: '0.75rem' }}>[~]</span>
+                          <span className="spinner-icon" style={{ fontSize: '0.75rem' }}></span>
                           <span>{aiStage || t.loading.step3Label}</span>
                         </div>
                         <span className="step-subtext" style={{ color: 'var(--text-secondary)', lineHeight: 1.4 }}>
@@ -4348,7 +4347,7 @@ Transcript:
 
                         <div>
                           <div className="ai-stage-title">
-                            <span style={{ animation: 'spin 2.5s linear infinite', display: 'inline-block' }}>[AI]</span>
+                            <span style={{ animation: 'spin 2.5s linear infinite', display: 'inline-block' }}></span>
                             <span>{aiStage || t.loading.synthesizingHighlights}</span>
                           </div>
                         </div>
@@ -4379,7 +4378,7 @@ Transcript:
               </div>
 
               <div style={{ marginTop: '1.75rem', textAlign: 'center', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-                <span className="pulsing-text">[SYS] {loadingDetails}</span>
+                <span className="pulsing-text">{loadingDetails}</span>
               </div>
             </div>
           </section>
@@ -4392,7 +4391,7 @@ Transcript:
             {result && (
               <div className="active-video-banner" style={{ margin: 0 }}>
                 <div className="active-video-info">
-                  <span style={{ color: 'var(--primary, #3b6dff)', fontWeight: 800, textShadow: '0 0 10px rgba(59, 109, 255,0.6)' }}>&gt;_ ACTIVE VIDEO:</span>
+                  <span style={{ color: 'var(--primary, #3b6dff)', fontWeight: 800, textShadow: '0 0 10px rgba(59, 109, 255,0.6)' }}>ACTIVE VIDEO:</span>
                   <span style={{ color: '#ffffff', fontWeight: 600, fontSize: '0.88rem' }}>{result.title}</span>
                   <span style={{ color: 'var(--text-muted)', fontSize: '0.78rem' }}>[{result.clips?.length || 0} klip tersedia]</span>
                 </div>
@@ -4440,7 +4439,7 @@ Transcript:
                     style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', userSelect: 'none' }}
                     onClick={() => setShowHistory(h => !h)}
                   >
-                    <span style={{ fontSize: '1.4rem', color: '#3b6dff', textShadow: '0 0 10px rgba(59, 109, 255, 0.7)', fontFamily: 'var(--font-mono)', fontWeight: 800 }}>&gt;_</span>
+                    <span style={{ fontSize: '1.4rem', color: '#3b6dff', textShadow: '0 0 10px rgba(59, 109, 255, 0.7)', fontFamily: 'var(--font-mono)', fontWeight: 800 }}></span>
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
@@ -4633,7 +4632,7 @@ Transcript:
                         borderRadius: 'var(--radius-md)',
                         border: '1px dashed rgba(255, 255, 255, 0.1)'
                       }}>
-                        <span style={{ fontSize: '1.75rem', display: 'block', marginBottom: '0.5rem', color: '#3b6dff' }}>&gt;_</span>
+                        <span style={{ fontSize: '1.75rem', display: 'block', marginBottom: '0.5rem', color: '#3b6dff' }}></span>
                         <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
                           {t.form.noHistoryMatch}
                         </p>
@@ -4727,7 +4726,7 @@ Transcript:
                                     </a>
                                   ) : entry.source_type === 'upload' ? (
                                     <span style={{ color: '#00e5ff', opacity: 0.9, fontWeight: 600 }}>
-                                      [+] Local Video
+                                      Local Video
                                     </span>
                                   ) : (
                                     <a
@@ -4941,7 +4940,7 @@ Transcript:
                           <div className="progress-card-header">
                             <span className="progress-card-title">
                               {rawDownloadProgress.status === 'ready' ? (
-                                <span style={{ color: '#4ade80' }}>[OK] {t.rawDownload.readyBadge}</span>
+                                <span style={{ color: '#4ade80' }}>{t.rawDownload.readyBadge}</span>
                               ) : (
                                 <>
                                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="spinner-icon">
@@ -5622,7 +5621,7 @@ Transcript:
                       gap: '0.45rem'
                     }}
                   >
-                    <ArrowLeft size={14} /> 01 // KEMBALI KE SUMBER / EDIT
+                    <ArrowLeft size={14} /> Kembali ke Source / Edit
                   </button>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                     <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
@@ -5639,7 +5638,7 @@ Transcript:
                         gap: '0.45rem'
                       }}
                     >
-                      03 // BUKA AUTO CLIPPER STUDIO <ArrowRight size={14} />
+                      Buka Auto Clipper Studio <ArrowRight size={14} />
                     </button>
                   </div>
                 </div>
@@ -5649,7 +5648,7 @@ Transcript:
             {/* If no video selected and no history in Tab 02 */}
             {!result && history.length === 0 && (
               <div className="glass-panel" style={{ padding: '3.5rem 2rem', textAlign: 'center', borderRadius: 'var(--radius-md)', background: '#0a1024', border: '1px solid #1a2348' }}>
-                <span style={{ fontSize: '2rem', color: '#3b6dff', display: 'block', marginBottom: '1rem', fontFamily: 'var(--font-mono)', fontWeight: 800 }}>&gt;_</span>
+                <span style={{ fontSize: '2rem', color: '#3b6dff', display: 'block', marginBottom: '1rem', fontFamily: 'var(--font-mono)', fontWeight: 800 }}></span>
                 <h3 style={{ fontSize: '1.1rem', color: '#fff', marginBottom: '0.5rem', fontWeight: 600 }}>Belum Ada Klip yang Dianalisis</h3>
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '1.5rem' }}>Silakan masukkan URL YouTube, link Google Drive, atau unggah video di tab Source.</p>
                 <button
@@ -5658,7 +5657,7 @@ Transcript:
                   onClick={() => setWorkflowTab('source')}
                   style={{ padding: '0.65rem 1.6rem', borderRadius: 'var(--radius-md)', background: '#3b6dff', color: '#000', fontWeight: 700 }}
                 >
-                  [ 01 // KE TAB SUMBER ]
+                  Ke Tab Source
                 </button>
               </div>
             )}
@@ -5723,9 +5722,9 @@ Transcript:
             <div className="custom-confirm-modal-card" style={{ maxWidth: '520px', textAlign: 'left', alignItems: 'stretch', background: '#0a0910', border: '1.5px solid #3b6dff', boxShadow: '0 0 35px rgba(59, 109, 255, 0.35)' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #222c58', paddingBottom: '0.75rem', marginBottom: '1rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span style={{ color: '#ff1e27', fontFamily: 'var(--font-mono)', fontWeight: 800, fontSize: '1rem' }}>&gt;_</span>
+                  <span style={{ color: '#ff1e27', fontFamily: 'var(--font-mono)', fontWeight: 800, fontSize: '1rem' }}></span>
                   <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 800, fontSize: '0.86rem', color: '#fff', letterSpacing: '0.04em' }}>
-                    SYS // KONFIRMASI BAHASA AUDIO VIDEO
+                    Konfirmasi Bahasa Audio Video
                   </span>
                 </div>
                 <button
@@ -5770,7 +5769,7 @@ Transcript:
                       boxShadow: transcriptLanguage === 'en' ? '0 0 15px rgba(59, 109, 255, 0.3)' : 'none'
                     }}
                   >
-                    <span>[EN]</span>
+                    <span>EN</span>
                     <span>ENGLISH</span>
                     {transcriptLanguage === 'en' && <span style={{ color: '#3b6dff', marginLeft: '0.25rem' }}>✓</span>}
                   </button>
@@ -5796,7 +5795,7 @@ Transcript:
                       boxShadow: transcriptLanguage === 'id' ? '0 0 15px rgba(59, 109, 255, 0.3)' : 'none'
                     }}
                   >
-                    <span>[ID]</span>
+                    <span>ID</span>
                     <span>INDONESIA</span>
                     {transcriptLanguage === 'id' && <span style={{ color: '#3b6dff', marginLeft: '0.25rem' }}>✓</span>}
                   </button>
@@ -5915,7 +5914,7 @@ Transcript:
                   <strong>{t.studio.confirmModalNotice}</strong>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#38bdf8' }}>
-                  <span>[SEC]</span>
+                  <span></span>
                   <strong>{t.header.confirmModalCookieNotice}</strong>
                 </div>
               </div>

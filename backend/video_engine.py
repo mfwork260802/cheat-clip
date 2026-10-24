@@ -512,6 +512,18 @@ def get_yt_dlp_base_cmd(
             cmd.extend(["--cookies", str(eff)])
 
     cmd.append("--force-ipv4")
+
+    # Cloud hosts (Railway, Render, VPS) use datacenter IPs that YouTube often blocks
+    # even with cookies. Route yt-dlp through a (residential) proxy when one is set.
+    ytdlp_proxy = os.environ.get("YTDLP_PROXY", "").strip()
+    if not ytdlp_proxy:
+        try:
+            from backend.utils.proxy import get_proxy_url
+            ytdlp_proxy = get_proxy_url() or ""
+        except Exception:
+            ytdlp_proxy = ""
+    if ytdlp_proxy:
+        cmd.extend(["--proxy", ytdlp_proxy])
     return cmd
 
 

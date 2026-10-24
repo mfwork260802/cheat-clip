@@ -33,7 +33,7 @@ export const HackerApiKeyInput: React.FC<HackerApiKeyInputProps> = ({
     >
       {/* Terminal prefix badge */}
       <div className={styles.prefix}>
-        KEY &gt;
+        KEY
       </div>
 
       {/* Input container with ASCII # masking */}

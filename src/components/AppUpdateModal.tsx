@@ -276,7 +276,7 @@ export const AppUpdateModal: React.FC<AppUpdateModalProps> = ({ isOpen, onClose 
               ) : info?.allow_update === false ? (
                 /* Server Deployment Notice */
                 <div className={styles.serverDeployCard}>
-                  <span style={{ fontSize: '1.3rem', color: 'var(--status-info)' }}>[SEC]</span>
+                  <span style={{ fontSize: '1.3rem', color: 'var(--status-info)' }}></span>
                   <div>
                     <h4 style={{ margin: 0, fontSize: '0.88rem', color: 'var(--status-info)', fontWeight: 600 }}>
                       Server / Production Deployment

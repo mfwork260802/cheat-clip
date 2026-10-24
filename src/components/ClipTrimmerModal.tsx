@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
-import { X, Play, Pause, ChevronDown, ChevronUp } from 'lucide-react';
+import { X, Play, Pause, ChevronDown, ChevronUp, Volume2, VolumeX } from 'lucide-react';
 import { useLanguage } from '../locales';
 import type { ViralClip, TranscriptLine } from '../types';
 
@@ -598,7 +598,7 @@ export const ClipTrimmerModal: React.FC<ClipTrimmerModalProps> = ({
             <div>
               <div className="trimmer-title-row">
                 <h2 className="trimmer-title">
-                  <span style={{ color: 'var(--primary)' }}>&gt;_</span> {t.trimmer.modalTitle}
+                  <span style={{ color: 'var(--primary)' }}></span> {t.trimmer.modalTitle}
                 </h2>
                 <span className="trimmer-limit-pill">
                   ±2 MIN CONTEXT LIMIT
@@ -810,7 +810,7 @@ export const ClipTrimmerModal: React.FC<ClipTrimmerModalProps> = ({
                       }}
                       title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
                     >
-                      {isMuted ? '[MUTE]' : '[AUDIO]'}
+                      {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
                     </button>
                     {isDirectVideo && (
                       <input
@@ -861,7 +861,7 @@ export const ClipTrimmerModal: React.FC<ClipTrimmerModalProps> = ({
                     style={{ background: 'rgba(250, 204, 21, 0.15)', border: '1px solid #facc15', color: '#facc15', borderRadius: 'var(--radius-md)', padding: '0.25rem 0.5rem', cursor: 'pointer', fontSize: '0.7rem', fontWeight: 700, fontFamily: 'var(--font-mono)' }}
                     title={t.trimmer.jumpToAiStart}
                   >
-                    [*] AI START
+                    AI START
                   </button>
                   <button
                     type="button"
@@ -869,8 +869,7 @@ export const ClipTrimmerModal: React.FC<ClipTrimmerModalProps> = ({
                     style={{ background: 'rgba(250, 204, 21, 0.15)', border: '1px solid #facc15', color: '#facc15', borderRadius: 'var(--radius-md)', padding: '0.25rem 0.5rem', cursor: 'pointer', fontSize: '0.7rem', fontWeight: 700, fontFamily: 'var(--font-mono)' }}
                     title={t.trimmer.jumpToAiEnd}
                   >
-                    AI END [*]
-                  </button>
+                    AI END </button>
                   <button
                     type="button"
                     onClick={() => seekToTime(adjustedEnd, true)}
@@ -1425,7 +1424,7 @@ export const ClipTrimmerModal: React.FC<ClipTrimmerModalProps> = ({
               {showTranscript && (
                 <>
                   <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', margin: '0 0 0.5rem 0', fontFamily: 'var(--font-mono)' }}>
-                    // {t.trimmer.transcriptHint}
+                    {t.trimmer.transcriptHint}
                   </p>
                   <div style={{ maxHeight: '160px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.3rem', paddingRight: '0.3rem' }}>
                     {relevantTranscript.map((line, idx) => {
