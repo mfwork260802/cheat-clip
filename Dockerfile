@@ -33,6 +33,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     fonts-noto-color-emoji \
     && rm -rf /var/lib/apt/lists/*
 
+# Deno lets yt-dlp solve YouTube's JavaScript challenges (without it, downloads,
+# face detection and rendering of YouTube sources fail on cloud servers)
+COPY --from=denoland/deno:bin-2.1.4 /deno /usr/local/bin/deno
+
 # Install Python dependencies (use PyTorch CPU to keep image size small & fast on 4GB RAM)
 COPY requirements.txt ./
 RUN pip install --no-cache-dir --upgrade pip && \
