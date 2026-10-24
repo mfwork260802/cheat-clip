@@ -1,0 +1,388 @@
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-main);
+  background-image:
+    radial-gradient(ellipse 70% 40% at 50% -8%, rgba(47, 107, 255, 0.38) 0%, transparent 70%),
+    radial-gradient(ellipse 35% 25% at 50% 30%, rgba(79, 209, 255, 0.08) 0%, transparent 70%),
+    linear-gradient(180deg, #050a1f 0%, #03050d 55%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: var(--text-primary);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar - Sharp boxy aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+  border-left: 1px solid var(--border-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a2348;
+  border: 1px solid var(--primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Typography: headings use the tight display sans */
+h1, h2, h3, h4, h5, h6,
+.studio-main-heading,
+.logo-title {
+  font-family: var(--font-mono) !important;
+  font-weight: 600 !important;
+  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+/* Body and descriptions: Clean readable Inter, NOT heavy bold */
+p, span, label, input, button, select, textarea {
+  font-family: var(--font-sans);
+}
+
+/* Monospace for cyber tags, badges, buttons, logs */
+.workflow-tab-btn,
+.glowing-btn,
+.timestamp-pill,
+.pro-badge,
+.status-pill,
+code, pre {
+  font-family: var(--font-mono) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+code, pre {
+  font-family: var(--font-code) !important;
+}
+
+/* Full-width header bar */
+.app-header-wrapper {
+  width: 100%;
+  background: rgba(3, 5, 13, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  z-index: 50;
+}
+
+.app-header-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.25rem 2rem;
+}
+
+/* Grid & Layout Utilities */
+.app-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 3rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Glass card: navy gradient, soft border, rounded */
+.glass-panel {
+  background: linear-gradient(180deg, rgba(16, 24, 56, 0.82) 0%, rgba(8, 12, 30, 0.86) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: var(--transition-smooth);
+}
+
+.glass-panel:hover {
+  border-color: rgba(79, 140, 255, 0.4);
+}
+
+/* Machine-like Industrial Sliders (Horizontal Rectangle / Ke Samping, Strictly Zero Radius) */
+input[type="range"],
+.custom-range-slider,
+.studio-slider,
+.position-slider,
+.player-timeline-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px !important;
+  background: linear-gradient(
+    to right,
+    var(--slider-fill-color, #3b6dff) 0%,
+    var(--slider-fill-color, #3b6dff) var(--slider-progress, 0%),
+    #0a1026 var(--slider-progress, 0%),
+    #0a1026 100%
+  ) !important;
+  border: 1px solid #1a2348 !important;
+  border-radius: var(--radius-md);
+  outline: none;
+  cursor: pointer;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.95);
+  margin: 8px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb,
+.custom-range-slider::-webkit-slider-thumb,
+.studio-slider::-webkit-slider-thumb,
+.position-slider::-webkit-slider-thumb,
+.player-timeline-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 32px !important;       /* Explicit HORIZONTAL RECTANGLE - wide / ke samping */
+  height: 10px !important;      /* Thin height for horizontal block ratio (3:1) */
+  border-radius: var(--radius-md);  /* STRICT ZERO RADIUS */
+  border: 1px solid #ffffff !important;
+  background: #3b6dff !important;
+  box-shadow: 0 0 12px rgba(59, 109, 255, 0.85) !important;
+  cursor: ew-resize;
+  transition: all 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover,
+.custom-range-slider::-webkit-slider-thumb:hover,
+.studio-slider::-webkit-slider-thumb:hover,
+.position-slider::-webkit-slider-thumb:hover,
+.player-timeline-slider::-webkit-slider-thumb:hover {
+  background: #6b93ff !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 0 18px rgba(107, 147, 255, 1) !important;
+}
+
+input[type="range"]::-moz-range-thumb,
+.custom-range-slider::-moz-range-thumb,
+.studio-slider::-moz-range-thumb,
+.position-slider::-moz-range-thumb,
+.player-timeline-slider::-moz-range-thumb {
+  width: 32px !important;
+  height: 10px !important;
+  border-radius: var(--radius-md);
+  border: 1px solid #ffffff !important;
+  background: #3b6dff !important;
+  box-shadow: 0 0 12px rgba(59, 109, 255, 0.85) !important;
+  cursor: ew-resize;
+}
+
+/* STRICTLY SQUARE Checkboxes and Radio Buttons - NO CIRCLES, NO ROUNDED CORNERS */
+input[type="checkbox"] {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  width: 15px !important;
+  height: 15px !important;
+  background-color: #060a18 !important;
+  border: 1.5px solid #2a3566 !important;
+  border-radius: var(--radius-md);
+  margin: 0 !important;
+  cursor: pointer !important;
+  display: inline-grid !important;
+  place-content: center !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+  transition: all 0.15s ease !important;
+}
+
+input[type="checkbox"]:hover {
+  border-color: #3b6dff !important;
+  background-color: #0c1230 !important;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #3b6dff !important;
+  border-color: #6b93ff !important;
+  box-shadow: 0 0 10px rgba(59, 109, 255, 0.5) !important;
+}
+
+input[type="checkbox"]:checked::after {
+  content: "" !important;
+  width: 4px !important;
+  height: 8px !important;
+  border: solid #000000 !important;
+  border-width: 0 2px 2px 0 !important;
+  transform: rotate(45deg) translate(-1px, -1px) !important;
+  display: block !important;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  width: 15px !important;
+  height: 15px !important;
+  background-color: #060a18 !important;
+  border: 1.5px solid #2a3566 !important;
+  border-radius: var(--radius-md);
+  margin: 0 !important;
+  cursor: pointer !important;
+  display: inline-grid !important;
+  place-content: center !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+  transition: all 0.15s ease !important;
+}
+
+input[type="radio"]:hover {
+  border-color: #3b6dff !important;
+  background-color: #0c1230 !important;
+}
+
+input[type="radio"]:checked {
+  background-color: #0a1026 !important;
+  border-color: #3b6dff !important;
+  box-shadow: 0 0 10px rgba(59, 109, 255, 0.4) !important;
+}
+
+input[type="radio"]:checked::after {
+  content: "" !important;
+  width: 7px !important;
+  height: 7px !important;
+  background-color: #3b6dff !important;
+  border-radius: var(--radius-md);
+  display: block !important;
+}
+
+/* Workflow Step Tabs (01 // SOURCE, 02 // CLIPS, 03 // CLIPPER) */
+.workflow-tab-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #060a18;
+  border: 1px solid var(--border-color);
+  padding: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.workflow-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.workflow-tab-btn:hover:not(:disabled) {
+  background: rgba(79, 140, 255, 0.08);
+  border-color: rgba(79, 140, 255, 0.4);
+  color: var(--text-primary);
+}
+
+.workflow-tab-btn.active {
+  background: #0f1a44;
+  border: 1.5px solid #3b6dff;
+  color: #6b93ff;
+  box-shadow: 0 0 16px rgba(59, 109, 255, 0.35);
+}
+
+.workflow-tab-btn.active .workflow-tab-dot {
+  background: #3b6dff;
+  box-shadow: 0 0 8px #3b6dff;
+}
+
+.workflow-tab-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.workflow-tab-dot {
+  width: 7px;
+  height: 7px;
+  background: #3f3f46;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.workflow-tab-count {
+  font-size: 0.72rem;
+  padding: 0.1rem 0.45rem;
+  background: rgba(0, 255, 102, 0.15) !important;
+  border: 1px solid #00ff66 !important;
+  color: #00ff66 !important;
+  box-shadow: 0 0 8px rgba(0, 255, 102, 0.3) !important;
+}
+
+/* Active Video Status Banner (Flow level) */
+.active-video-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.15rem;
+  background: #0a1024;
+  border: 1.5px solid var(--primary);
+  border-left: 4px solid var(--primary);
+  box-shadow: 0 0 16px rgba(59, 109, 255, 0.25);
+  font-family: var(--font-mono);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.active-video-info {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.active-video-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.active-video-close-btn {
+  background: rgba(255, 30, 39, 0.12);
+  border: 1px solid rgba(255, 30, 39, 0.45);
+  color: #ff1e27;
+  border-radius: var(--radius-md);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  box-shadow: 0 0 10px rgba(255, 30, 39, 0.2);
+}
+
+.active-video-close-btn:hover {
+  background: #ff1e27;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 30, 39, 0.6);
+}
+
+.glass-panel:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+}
